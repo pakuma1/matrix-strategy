@@ -3,7 +3,7 @@ name: Python Matrix Strategy Workflow
 on:
   push:
     branches:
-      - '**'  # Trigger on push to any branch
+      - '**' 
 
 jobs:
   build:
