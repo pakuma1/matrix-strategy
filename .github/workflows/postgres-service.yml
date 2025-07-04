@@ -27,16 +27,12 @@ jobs:
     steps:
       - name: Wait for PostgreSQL to be ready
         run: |
-          echo "Waiting for PostgreSQL to be ready..."
-          for i in {1..30}; do
-            if nc -z localhost 5432; then
-              echo "PostgreSQL is up and running!"
-              break
-            else
-              echo "PostgreSQL not yet ready... retrying ($i)"
-              sleep 1
-            fi
+          echo "Waiting for PostgreSQL to start on localhost:5432..."
+          while ! nc -z localhost 5432; do
+            echo "PostgreSQL not ready yet. Retrying in 1s..."
+            sleep 1
           done
+          echo "PostgreSQL is up and running!"
 
       - name: Output Success Message
         run: echo "✅ PostgreSQL service is ready and accepting connections."
