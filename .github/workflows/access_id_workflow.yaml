@@ -1,0 +1,17 @@
+name: GitHub repository variables
+
+on:
+  push:
+    branches:
+      - '**' 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print Message
+        run: echo "The ACCESS_ID is ${{vars.ACCESS_ID}}"
